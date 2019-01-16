@@ -12,8 +12,16 @@ document.addEventListener('keypress', function (e) {
                         message: integer + " is not a number."
                     },
                     {
+                        condition: (isNaN(inputValue) === true),
+                        message: "Please enter a number."
+                    },
+                    {
+                        condition: (integer > Math.pow(2, 30)),
+                        message: "This number is too big. It will likely crash your browser. Please enter a number between 2 and 1,073,741,824."
+                    },
+                    {
                         condition: ((integer === Infinity) || ((integer === NaN))),
-                        message: "Infinity and NaN are not permitted"
+                        message: "Infinity and NaN are not permitted."
                     },
                     {
                         condition: (integer === 1),
@@ -29,11 +37,12 @@ document.addEventListener('keypress', function (e) {
                     },
                     {
                         condition: (integer % 1 !== 0),
-                        message: "Floating point numbers ( e.g. 1.2, 3.14159) are not permitted."
+                        message: "Floating point numbers (e.g. 1.2, 3.14159) and are not permitted."
                     }
                 ];
                 for (let i = 0; i < arrayOfImproperValues.length; i++) {
                     if (arrayOfImproperValues[i].condition === true) {
+                        document.getElementById("answerGoesHere").innerHTML = arrayOfImproperValues[i].message;
                         console.error(arrayOfImproperValues[i].message);
                         return;
                     }
